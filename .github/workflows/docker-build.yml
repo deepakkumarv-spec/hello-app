@@ -29,5 +29,22 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          push: false
+          push: true
           tags: kumarvdeepak/deepak:${{ github.run_number }}
+
+      - name: Checkout GitOps Repository
+        uses: actions/checkout@v4
+        with:
+          repository: deepakkumarv-spec/gitops-repo
+          token: ${{ secrets.GITOPS_PAT }}
+          path: gitops
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+      - name: Push GitOps Repository
+        run: |
+          cd gitops
+          git push origin main
