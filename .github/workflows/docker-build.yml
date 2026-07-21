@@ -49,8 +49,8 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config --global user.name "arikaran"
-          git config --global user.email "arikaran@netoai.org"
+          git config --global user.name "bavishya"
+          git config --global user.email "bavishya.k@netoai.org"
 
       - name: Commit Changes
         run: |
