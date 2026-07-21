@@ -41,11 +41,11 @@ jobs:
 
       - name: Update Image Tag
         run: |
-          sed -i 's/tag:.*/tag: "${{ github.run_number }}"/' gitops/apps/hello-app/values.yaml
+          sed -i 's/tag:.*/tag: "${{ github.run_number }}"/' gitops/apps/hello-chart/values.yaml
 
       - name: Verify Updated values.yaml
         run: |
-          cat gitops/apps/hello-app/values.yaml
+          cat gitops/apps/hello-chart/values.yaml
 
       - name: Configure Git
         run: |
