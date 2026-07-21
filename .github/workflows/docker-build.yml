@@ -41,16 +41,16 @@ jobs:
 
       - name: Update Image Tag
         run: |
-          sed -i 's/tag:.*/tag: "${{ github.run_number }}"/' gitops/apps/hello-chart/values.yaml
+          sed -i 's/tag:.*/tag: "${{ github.run_number }}"/' gitops/apps/hello-app/values.yaml
 
       - name: Verify Updated values.yaml
         run: |
-          cat gitops/apps/hello-chart/values.yaml
+          cat gitops/apps/hello-app/values.yaml
 
       - name: Configure Git
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
+          git config --global user.name "arikaran"
+          git config --global user.email "arikaran@netoai.org"
 
       - name: Commit Changes
         run: |
@@ -65,4 +65,4 @@ jobs:
       - name: Push GitOps Repository
         run: |
           cd gitops
-          git push origin master
+          git push origin main
