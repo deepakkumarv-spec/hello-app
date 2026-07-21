@@ -39,10 +39,28 @@ jobs:
           token: ${{ secrets.GITOPS_PAT }}
           path: gitops
 
+      - name: Update Image Tag
+        run: |
+          sed -i 's/tag:.*/tag: "${{ github.run_number }}"/' gitops/apps/hello-app/values.yaml
+
+      - name: Verify Updated values.yaml
+        run: |
+          cat gitops/apps/hello-app/values.yaml
+
       - name: Configure Git
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
+
+      - name: Commit Changes
+        run: |
+          cd gitops
+
+          git add .
+
+          git status
+
+          git commit -m "Update image to ${{ github.run_number }}" || echo "Nothing to commit"
 
       - name: Push GitOps Repository
         run: |
